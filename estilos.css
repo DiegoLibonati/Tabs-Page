@@ -1,141 +1,144 @@
-*{
-    padding: 0px;
-    margin: 0px;
-    box-sizing: border-box;
-    font-size: 10px;
-    list-style: none;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  list-style: none;
+  font-family: "Roboto", Helvetica, sans-serif;
 }
 
-img{
-    max-width: 100%;
+img {
+  max-width: 100%;
 }
 
-body{
-    height: 100vh;
-    width: 100vw;
-    background-color: rgb(218, 218, 197);
+body {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(218, 218, 197);
 }
 
-.section_container{
-    width: 100vw;
+.main_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
 }
 
-    .header_container{
-        width: 100%;
-        height: 30%;
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: center;
-        align-items: center;
-    }
-
-        .header_content{
-            text-align: center;
-        }
-
-            .header_content h1{
-                font-size: 4rem;
-                padding: 1rem;
-                letter-spacing: 0.2rem;
-            }
-
-            .header_content p{
-                font-size: 1.4rem;
-                margin: 1rem;
-            }
-
-.tabs_container{
-    width: 100%;
-    height: 70%;
-    display: flex;
-    justify-content: center;
+.principal_section_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 100%;
 }
 
-    .tabs_content{
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        align-items: center;
-    }
+.header_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 100%;
+  height: 100%;
+  margin: 20px 0 20px 0;
+}
 
-        .img{
-            width: 50rem;
-            height: 33rem;
-            align-self: center;
-            display: flex;
-            align-items: center;
-            margin: 1rem;
-        }
+.header_container h1 {
+  font-size: 30px;
+}
 
-            .img img{
-                object-fit: cover;
-                width: 100%;
-                height: 100%;
-                border-radius: 2rem;
-            }
+.header_container p {
+  font-size: 20px;
+  margin: 10px 0 0 0;
+}
 
-        .final_content{
-            width: 50rem;
-            height: 100%;
-            display: flex;
-            flex-flow: column wrap;
-            align-items: center;
-            align-self: center;
-            margin: 1rem;
-            background-color: #fff;
-        }
+.tabs_container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-items: center;
+}
 
-            .buttons{
-                display: flex;
-                justify-content: center;
-                width: 100%;
-                height: 15%;
-            }
+.tabs_container img {
+  width: 100%;
+  height: 300px;
+  border-radius: 5px;
+  object-fit: cover;
+}
 
-                #btnhistory{
-                    width: 33.3%;
-                    border: none;
-                    background: rgb(165, 156, 156);
-                    font-size: 2rem;
-                }
+.tabs_container_text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #fff;
+  border-radius: 5px;
+}
 
-                    #btnhistory:focus{
-                        background-color: #fff;
-                        border: 0.3rem solid #48e;
-                    }
-                
-                #btnvision{
-                    width: 33.3%;
+.tabs_container_text_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-flow: row wrap;
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #fff;
+  padding: 2px;
+}
 
-                    border: none;
-                    background: rgb(165, 156, 156);
-                    font-size: 2rem;
-                }
+.tabs_container_text_buttons_button {
+  background-color: #ccc;
+  font-size: 15px;
+  border: none;
+  width: 33%;
+  height: auto;
+  padding: 5px;
+  cursor: pointer;
+}
 
-                    #btnvision:focus{
-                        background-color: #fff;
-                        border: 0.3rem solid #48e;
-                    }
+.isActive {
+  background-color: #fff;
+}
 
-                #btngoals{
-                    width: 33.4%;
+.tabs_container_text p {
+  background-color: #ccc;
+  font-size: 20px;
+  padding: 5px;
+  text-align: justify;
+}
 
-                    border: none;
-                    background: rgb(165, 156, 156);
-                    font-size: 2rem;
-                }
+@media only screen and (min-width: 768px) {
+  .tabs_container {
+    width: 600px;
+  }
+}
 
-                    #btngoals:focus{
-                        background-color: #fff;
-                        border: 0.3rem solid #48e;
-                    }
+@media only screen and (min-width: 1024px) {
+  .tabs_container {
+    grid-template-columns: repeat(2, 1fr);
+    width: 800px;
+    margin-top: 20px;
+  }
 
+  .tabs_container_text_buttons {
+    height: 15%;
+  }
 
-            .text{
-                width: 100%;
-                height: 85%;
-                padding: 2rem;
-                font-size: 1.5rem;
-            }
+  .tabs_container_text_buttons button {
+    height: 100%;
+  }
+
+  .tabs_container p {
+    height: 85%;
+  }
+}
