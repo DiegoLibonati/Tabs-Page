@@ -39,13 +39,15 @@ if (myActualButton == "btnhistory"){
 
 ## Galery
 
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs-0.jpg)
+![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-0.jpg)
 
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs-1.jpg)
+![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-1.jpg)
 
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs-2.jpg)
+![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-2.jpg)
 
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs-3.jpg)
+![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-3.jpg)
+
+![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-4.jpg)
 
 ## Portfolio Link
 
@@ -53,6 +55,82 @@ if (myActualButton == "btnhistory"){
 
 ## Video
 
+## Documentation
 
-https://user-images.githubusercontent.com/99032604/198900216-f8ba5f36-01d8-4d27-8a42-1bf48d6cde26.mp4
+Here we obtain all the buttons of the tab to be able to use them in javascript:
 
+```
+const btnsTab = document.querySelectorAll(
+  ".tabs_container_text_buttons_button"
+);
+```
+
+Here we get the text container that will change with each tab we select:
+
+```
+const tabText = document.getElementById("tab-text");
+```
+
+Here we get the image container that will change with each tab we select:
+
+```
+const tabImage = document.getElementById("tab-image");
+```
+
+Here what I did was to go through the array of buttons and assign to each button an event when the button is clicked, when the button is clicked the `changeTabInformation()` function will be executed:
+
+```
+btnsTab.forEach((btnTab) => {
+  btnTab.addEventListener("click", (e) => changeTabInformation(e));
+});
+```
+
+This function will get the id of the button pressed, then it will execute the ``changeClassActiveButton` function and finally depending on the ID of each element with the ID of the button pressed it will change the container text element and the image:
+
+```
+const changeTabInformation = (e) => {
+  const btnTabId = e.target.id;
+
+  changeClassActiveButton(e);
+
+  if (btnTabId === "history") {
+    tabText.textContent =
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia.";
+    tabImage.src =
+      "https://www.absolutviajes.com/wp-content/uploads/2008/11/arquitectura-china-antigua.png";
+    return;
+  }
+
+  if (btnTabId === "vision") {
+    tabText.textContent =
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia.";
+    tabImage.src = "https://img.lovepik.com/photo/50131/9815.jpg_wh860.jpg";
+    return;
+  }
+
+  if (btnTabId === "goals") {
+    tabText.textContent =
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia.";
+    tabImage.src =
+      "http://valeriavasquez.weebly.com/uploads/4/8/7/7/48775221/1305460_orig.jpg";
+    return;
+  }
+};
+```
+
+This function removes the `isActive` class from the buttons and adds it to the pressed button:
+
+```
+const changeClassActiveButton = (event) => {
+  const btnPressed = event.target;
+
+  btnsTab.forEach((btnTab) => {
+    if (btnTab.classList.contains("isActive")) {
+      btnTab.classList.remove("isActive");
+    }
+  });
+
+  btnPressed.classList.add("isActive");
+};
+
+```
