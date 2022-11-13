@@ -17,20 +17,6 @@
 
 I made a web page that through different tabs you can get different information. Also if you tab with your keyboard you can access the different tabs and not only with the mouse click.
 
-## Feel free to edit my code
-
-If you happen to add a button in the HTML and then look up the id of that button you can add it in this condition to render what text you want to show for that button/tab
-
-```
-if (myActualButton == "btnhistory"){
-    newText.innerHTML = "La historia de este lugar es xD"
-} else if (myActualButton == "btnvision"){
-    newText.innerHTML = "La vision es xD"
-} else {
-    newText.innerHTML = "Los goals son xd"
-}
-```
-
 ## Technologies used
 
 1. Javascript
@@ -54,6 +40,8 @@ if (myActualButton == "btnhistory"){
 `https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Tabs%20Page`
 
 ## Video
+
+https://user-images.githubusercontent.com/99032604/200205538-5fdfdbc3-39aa-4a1d-b6f7-3f9beaa3e45f.mp4
 
 ## Documentation
 
