@@ -51,7 +51,7 @@ if (myActualButton == "btnhistory"){
 
 ## Portfolio Link
 
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Tabs%20page`
+`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Tabs%20Page`
 
 ## Video
 
