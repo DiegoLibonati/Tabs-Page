@@ -23,22 +23,6 @@ I made a web page that through different tabs you can get different information.
 2. CSS3
 3. HTML5
 
-## Galery
-
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-0.jpg)
-
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-1.jpg)
-
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-2.jpg)
-
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-3.jpg)
-
-![tabs-page](https://raw.githubusercontent.com/DiegoLibonati/DiegoLibonatiWeb/main/data/projects/Javascript/Imagenes/tabs2-4.jpg)
-
-## Portfolio Link
-
-`https://diegolibonati.github.io/DiegoLibonatiWeb/#/projects?q=Tabs%20Page`
-
 ## Video
 
 https://user-images.githubusercontent.com/99032604/200205538-5fdfdbc3-39aa-4a1d-b6f7-3f9beaa3e45f.mp4
