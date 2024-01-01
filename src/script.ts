@@ -1,11 +1,12 @@
 const btnsTab = document.querySelectorAll(
   ".tabs_container_text_buttons_button"
-);
-const tabText = document.getElementById("tab-text");
-const tabImage = document.getElementById("tab-image");
+) as NodeList;
+const tabText = document.getElementById("tab-text") as HTMLParagraphElement;
+const tabImage = document.getElementById("tab-image") as HTMLImageElement;
 
-const changeTabInformation = (e) => {
-  const btnTabId = e.target.id;
+const changeTabInformation = (e: Event) => {
+  const target = e.target as HTMLElement
+  const btnTabId = target.id;
 
   changeClassActiveButton(e);
 
@@ -33,12 +34,13 @@ const changeTabInformation = (e) => {
   }
 };
 
-const changeClassActiveButton = (event) => {
-  const btnPressed = event.target;
+const changeClassActiveButton = (event: Event) => {
+  const btnPressed = event.target as HTMLElement;
 
   btnsTab.forEach((btnTab) => {
-    if (btnTab.classList.contains("isActive")) {
-      btnTab.classList.remove("isActive");
+    const button = btnTab as HTMLButtonElement
+    if (button.classList.contains("isActive")) {
+      button.classList.remove("isActive");
     }
   });
 
