@@ -1,24 +1,17 @@
 import { screen } from "@testing-library/dom";
 import user from "@testing-library/user-event";
 
-import fs from "fs";
-import path from "path";
-
 import { TABS_MOCK } from "./tests/constants/constants";
+import { OFFICIAL_BODY } from "./tests/jest.setup";
 
 const initTabKey = "history";
 const initTab = TABS_MOCK[initTabKey];
 
-const INITIAL_HTML: string = fs.readFileSync(
-  path.resolve(__dirname, "../index.html"),
-  "utf8"
-);
-
 beforeEach(() => {
   jest.resetModules();
-  const body = INITIAL_HTML.match(/<body[^>]*>([\s\S]*?)<\/body>/i)![1];
 
-  document.body.innerHTML = body;
+  document.body.innerHTML = OFFICIAL_BODY;
+
   require("./index.ts");
   document.dispatchEvent(new Event("DOMContentLoaded"));
 });
