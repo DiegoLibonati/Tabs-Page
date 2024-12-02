@@ -8,8 +8,6 @@ const initTabKey = "history";
 const initTab = TABS_MOCK[initTabKey];
 
 beforeEach(() => {
-  jest.resetModules();
-
   document.body.innerHTML = OFFICIAL_BODY;
 
   require("./index.ts");
