@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tabs Page</title>
 
+    <link rel="stylesheet" type="text/css" href="./src/index.css" />
     <link rel="stylesheet" type="text/css" href="./src/styles.css" />
   </head>
   <body>
-    <main class="main_container">
-      <section class="principal_section_container">
-        <article class="header_container">
+    <main class="main">
+      <section class="section">
+        <article class="header">
           <h1>About us</h1>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum,
@@ -19,32 +20,32 @@
           </p>
         </article>
 
-        <article class="tabs_container">
+        <article class="tabs">
           <img
             src="https://www.absolutviajes.com/wp-content/uploads/2008/11/arquitectura-china-antigua.png"
             alt="Arquitectura china"
             id="tab-image"
           />
 
-          <div class="tabs_container_text">
-            <div class="tabs_container_text_buttons">
+          <div class="tabs__list">
+            <div class="tabs__list__btns">
               <button
                 id="history"
-                class="tabs_container_text_buttons_button isActive"
+                class="tabs__list__btns__btn tabs__list__btns__btn--active"
                 aria-label="history button"
               >
                 History
               </button>
               <button
                 id="vision"
-                class="tabs_container_text_buttons_button"
+                class="tabs__list__btns__btn"
                 aria-label="vision button"
               >
                 Vision
               </button>
               <button
                 id="goals"
-                class="tabs_container_text_buttons_button"
+                class="tabs__list__btns__btn"
                 aria-label="goals button"
               >
                 Goals

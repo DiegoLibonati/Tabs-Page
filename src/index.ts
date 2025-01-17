@@ -9,11 +9,11 @@ const changeTabInformation = (e: Event) => {
 
   const currectActiveBtn = Array.from(btnsTab).find((btnTab: Node) => {
     const btn = btnTab as HTMLButtonElement;
-    return btn.classList.contains("isActive");
+    return btn.classList.contains("tabs__list__btns__btn--active");
   }) as HTMLButtonElement;
 
-  currectActiveBtn.classList.remove("isActive");
-  btnPressed.classList.add("isActive");
+  currectActiveBtn.classList.remove("tabs__list__btns__btn--active");
+  btnPressed.classList.add("tabs__list__btns__btn--active");
 
   const tab = tabs[btnTabId as keyof typeof tabs];
   tabText.textContent = tab.text;
