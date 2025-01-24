@@ -1,4 +1,4 @@
-.main {
+.main-app {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,7 @@
   padding: 1rem;
 }
 
-.section {
+.content-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,11 +27,11 @@
   margin: 2rem 0 2rem 0;
 }
 
-.header h1 {
+.header__title {
   font-size: 3rem;
 }
 
-.header p {
+.header__description {
   font-size: 2rem;
   margin: 1rem 0 0 0;
 }
@@ -47,14 +47,14 @@
   justify-items: center;
 }
 
-.tabs img {
+.tabs__img {
   width: 100%;
   height: 30rem;
   border-radius: 0.5rem;
   object-fit: cover;
 }
 
-.tabs__list {
+.tabs-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -65,7 +65,7 @@
   border-radius: 0.5rem;
 }
 
-.tabs__list__btns {
+.tabs-wrapper__list {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -76,7 +76,7 @@
   padding: 0.2rem;
 }
 
-.tabs__list__btns__btn {
+.tabs-wrapper__list-tab {
   background-color: var(--secondary-color);
   font-size: 1.5rem;
   border: none;
@@ -86,11 +86,11 @@
   cursor: pointer;
 }
 
-.tabs__list__btns__btn--active {
+.tabs-wrapper__list-tab--active {
   background-color: var(--white-color);
 }
 
-.tabs__list p {
+.tabs-wrapper__description {
   background-color: var(--secondary-color);
   font-size: 2rem;
   padding: 0.5rem;
@@ -110,15 +110,15 @@
     margin-top: 2rem;
   }
 
-  .tabs__list__btns {
+  .tabs-wrapper__list {
     height: 15%;
   }
 
-  .tabs__list__btns button {
+  .tabs-wrapper__list-tab {
     height: 100%;
   }
 
-  .tabs p {
+  .tabs-wrapper__description {
     height: 85%;
   }
 }

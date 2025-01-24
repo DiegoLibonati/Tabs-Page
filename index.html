@@ -10,11 +10,11 @@
     <link rel="stylesheet" type="text/css" href="./src/styles.css" />
   </head>
   <body>
-    <main class="main">
-      <section class="section">
+    <main class="main-app">
+      <section class="content-wrapper">
         <article class="header">
-          <h1>About us</h1>
-          <p>
+          <h1 class="header__title">About us</h1>
+          <p class="header__description">
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum,
             voluptate. Ipsam nisi nihil cum iusto?
           </p>
@@ -25,34 +25,35 @@
             src="https://www.absolutviajes.com/wp-content/uploads/2008/11/arquitectura-china-antigua.png"
             alt="Arquitectura china"
             id="tab-image"
+            class="tabs__img"
           />
 
-          <div class="tabs__list">
-            <div class="tabs__list__btns">
+          <div class="tabs-wrapper">
+            <div class="tabs-wrapper__list">
               <button
                 id="history"
-                class="tabs__list__btns__btn tabs__list__btns__btn--active"
+                class="tabs-wrapper__list-tab tabs-wrapper__list-tab--active"
                 aria-label="history button"
               >
                 History
               </button>
               <button
                 id="vision"
-                class="tabs__list__btns__btn"
+                class="tabs-wrapper__list-tab"
                 aria-label="vision button"
               >
                 Vision
               </button>
               <button
                 id="goals"
-                class="tabs__list__btns__btn"
+                class="tabs-wrapper__list-tab"
                 aria-label="goals button"
               >
                 Goals
               </button>
             </div>
 
-            <p id="tab-text">
+            <p id="tab-text" class="tabs-wrapper__description">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit,
               mollitia.
             </p>
