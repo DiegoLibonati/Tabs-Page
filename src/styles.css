@@ -8,7 +8,7 @@
   padding: 1rem;
 }
 
-.content-wrapper {
+.page-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +17,7 @@
   height: 100%;
 }
 
-.header {
+.header-wrapper {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,7 +76,7 @@
   padding: 0.2rem;
 }
 
-.tabs-wrapper__list-tab {
+.tabs-wrapper__tab {
   background-color: var(--secondary-color);
   font-size: 1.5rem;
   border: none;
@@ -86,7 +86,7 @@
   cursor: pointer;
 }
 
-.tabs-wrapper__list-tab--active {
+.tabs-wrapper__tab--active {
   background-color: var(--white-color);
 }
 
@@ -114,7 +114,7 @@
     height: 15%;
   }
 
-  .tabs-wrapper__list-tab {
+  .tabs-wrapper__tab {
     height: 100%;
   }
 

@@ -37,7 +37,7 @@ describe("index.ts", () => {
       for (let btn of btns) {
         if (btn.id === initTabKey)
           expect(
-            btn.classList.contains("tabs-wrapper__list-tab--active")
+            btn.classList.contains("tabs-wrapper__tab--active")
           ).toBeTruthy();
         expect(btn).toBeInTheDocument();
       }
@@ -51,7 +51,7 @@ describe("index.ts", () => {
 
       expect(btnDiffOfInitTabKey).toBeInTheDocument();
       expect(
-        btnDiffOfInitTabKey?.classList.contains("tabs-wrapper__list-tab--active")
+        btnDiffOfInitTabKey?.classList.contains("tabs-wrapper__tab--active")
       ).toBeFalsy();
 
       await user.click(btnDiffOfInitTabKey!);
@@ -62,7 +62,7 @@ describe("index.ts", () => {
       const descriptionTab = screen.getByText(currentTab.text);
 
       expect(
-        btnDiffOfInitTabKey?.classList.contains("tabs-wrapper__list-tab--active")
+        btnDiffOfInitTabKey?.classList.contains("tabs-wrapper__tab--active")
       ).toBeTruthy();
       expect(img).toBeInTheDocument();
       expect(img).toHaveAttribute("src", currentTab.src);
