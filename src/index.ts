@@ -1,5 +1,5 @@
-import { getElements } from "./helpers/getElements";
-import { tabs } from "./constants/constants";
+import { getElements } from "@src/helpers/getElements";
+import { tabs } from "@src/constants/constants";
 
 const changeTabInformation = (e: Event) => {
   const { tabText, tabImage, btnsTab } = getElements();
