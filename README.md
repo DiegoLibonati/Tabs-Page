@@ -22,6 +22,7 @@ I made a web page that through different tabs you can get different information.
 1. Typescript
 2. CSS3
 3. HTML5
+4. Vite
 
 ## Libraries used
 
