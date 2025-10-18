@@ -1,31 +1,9 @@
-import { getElements } from "@src/helpers/getElements";
-import { tabs } from "@src/constants/constants";
-
-const changeTabInformation = (e: Event) => {
-  const { tabText, tabImage, btnsTab } = getElements();
-
-  const btnPressed = e.target as HTMLElement;
-  const btnTabId = btnPressed.id;
-
-  const currectActiveBtn = Array.from(btnsTab).find((btnTab: Node) => {
-    const btn = btnTab as HTMLButtonElement;
-    return btn.classList.contains("tabs-wrapper__tab--active");
-  }) as HTMLButtonElement;
-
-  currectActiveBtn.classList.remove("tabs-wrapper__tab--active");
-  btnPressed.classList.add("tabs-wrapper__tab--active");
-
-  const tab = tabs[btnTabId as keyof typeof tabs];
-  tabText.textContent = tab.text;
-  tabImage.src = tab.src;
-};
+import { TabsPage } from "@src/pages/TabsPage/TabsPage";
 
 const onInit = () => {
-  const { btnsTab } = getElements();
-
-  btnsTab.forEach((btnTab) =>
-    btnTab.addEventListener("click", (e) => changeTabInformation(e))
-  );
+  const app = document.querySelector<HTMLDivElement>("#app")!;
+  const tabsPage = TabsPage();
+  app.appendChild(tabsPage);
 };
 
 document.addEventListener("DOMContentLoaded", onInit);

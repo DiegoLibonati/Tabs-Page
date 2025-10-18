@@ -1,0 +1,19 @@
+.tab {
+  background-color: var(--secondary-color);
+  font-size: 1.5rem;
+  border: none;
+  width: 33%;
+  height: auto;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.tab--active {
+  background-color: var(--white-color);
+}
+
+@media only screen and (min-width: 1024px) {
+  .tab {
+    height: 100%;
+  }
+}
