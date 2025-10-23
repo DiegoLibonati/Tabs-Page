@@ -31,15 +31,20 @@ describe("TabsPage.ts", () => {
 
       expect(container).toBeInstanceOf(HTMLElement);
       expect(container.className).toBe("tabs-page");
-      expect(container.querySelector(".page-wrapper")).toBeInTheDocument();
+      expect(
+        container.querySelector<HTMLElement>(".page-wrapper")
+      ).toBeInTheDocument();
     });
 
     test("It should render header section", () => {
       renderComponent();
 
-      const headerWrapper = document.querySelector(".header-wrapper");
+      const headerWrapper =
+        document.querySelector<HTMLElement>(".header-wrapper");
       const title = screen.getByText("About us");
-      const description = document.querySelector(".header__description");
+      const description = document.querySelector<HTMLParagraphElement>(
+        ".header__description"
+      );
 
       expect(headerWrapper).toBeInTheDocument();
       expect(title).toBeInTheDocument();
@@ -50,21 +55,22 @@ describe("TabsPage.ts", () => {
     test("It should render h1 for title", () => {
       renderComponent();
 
-      const title = document.querySelector(
-        ".header__title"
-      ) as HTMLHeadingElement;
+      const title =
+        document.querySelector<HTMLHeadingElement>(".header__title");
 
       expect(title).toBeInstanceOf(HTMLHeadingElement);
-      expect(title.tagName).toBe("H1");
+      expect(title!.tagName).toBe("H1");
     });
 
     test("It should render tabs section", () => {
       renderComponent();
 
-      const tabs = document.querySelector(".tabs");
-      const tabsWrapper = document.querySelector(".tabs-wrapper");
-      const tabsList = document.querySelector(".tabs__list");
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabs = document.querySelector<HTMLElement>(".tabs");
+      const tabsWrapper =
+        document.querySelector<HTMLDivElement>(".tabs-wrapper");
+      const tabsList = document.querySelector<HTMLDivElement>(".tabs__list");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
 
       expect(tabs).toBeInTheDocument();
       expect(tabsWrapper).toBeInTheDocument();
@@ -103,9 +109,9 @@ describe("TabsPage.ts", () => {
     test("It should render tabs with correct ids", () => {
       renderComponent();
 
-      const historyTab = document.getElementById("history");
-      const visionTab = document.getElementById("vision");
-      const goalsTab = document.getElementById("goals");
+      const historyTab = document.querySelector<HTMLButtonElement>("#history");
+      const visionTab = document.querySelector<HTMLButtonElement>("#vision");
+      const goalsTab = document.querySelector<HTMLButtonElement>("#goals");
 
       expect(historyTab).toBeInTheDocument();
       expect(visionTab).toBeInTheDocument();
@@ -115,8 +121,8 @@ describe("TabsPage.ts", () => {
     test("It should append all tabs to tabs list", () => {
       renderComponent();
 
-      const tabsList = document.querySelector(".tabs__list");
-      const tabs = tabsList?.querySelectorAll(".tab");
+      const tabsList = document.querySelector<HTMLDivElement>(".tabs__list");
+      const tabs = tabsList?.querySelectorAll<HTMLButtonElement>(".tab");
 
       expect(tabs?.length).toBe(3);
     });
@@ -126,7 +132,7 @@ describe("TabsPage.ts", () => {
     test("It should have history tab active by default", () => {
       renderComponent();
 
-      const historyTab = document.getElementById("history");
+      const historyTab = document.querySelector<HTMLButtonElement>("#history");
 
       expect(historyTab).toHaveClass("tab--active");
     });
@@ -134,9 +140,10 @@ describe("TabsPage.ts", () => {
     test("It should have only history tab active initially", () => {
       renderComponent();
 
-      const visionTab = document.getElementById("vision");
-      const goalsTab = document.getElementById("goals");
-      const activeTabs = document.querySelectorAll(".tab--active");
+      const visionTab = document.querySelector<HTMLButtonElement>("#vision");
+      const goalsTab = document.querySelector<HTMLButtonElement>("#goals");
+      const activeTabs =
+        document.querySelectorAll<HTMLButtonElement>(".tab--active");
 
       expect(activeTabs.length).toBe(1);
       expect(visionTab).not.toHaveClass("tab--active");
@@ -146,7 +153,7 @@ describe("TabsPage.ts", () => {
     test("It should display initial tab image", () => {
       renderComponent();
 
-      const tabImage = document.querySelector(".tab-image");
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
 
       expect(tabImage).toBeInTheDocument();
     });
@@ -154,7 +161,8 @@ describe("TabsPage.ts", () => {
     test("It should display initial tab description", () => {
       renderComponent();
 
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
 
       expect(tabsDescription?.textContent).toBe(tabsData.history.text);
     });
@@ -162,11 +170,12 @@ describe("TabsPage.ts", () => {
     test("It should display history tab content initially", () => {
       renderComponent();
 
-      const tabImage = document.querySelector(".tab-image") as HTMLImageElement;
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
 
-      expect(tabImage.src).toContain(tabsData.history.src);
-      expect(tabImage.alt).toBe(tabsData.history.text);
+      expect(tabImage!.src).toContain(tabsData.history.src);
+      expect(tabImage!.alt).toBe(tabsData.history.text);
       expect(tabsDescription?.textContent).toBe(tabsData.history.text);
     });
   });
@@ -175,18 +184,18 @@ describe("TabsPage.ts", () => {
     test("It should render tab image with correct attributes", () => {
       renderComponent();
 
-      const tabImage = document.querySelector(".tab-image") as HTMLImageElement;
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
 
       expect(tabImage).toBeInTheDocument();
-      expect(tabImage.id).toBe("tab-image");
+      expect(tabImage!.id).toBe("tab-image");
       expect(tabImage).toHaveClass("tab-image");
     });
 
     test("It should append tab image to tabs section", () => {
       renderComponent();
 
-      const tabs = document.querySelector(".tabs");
-      const tabImage = tabs?.querySelector(".tab-image");
+      const tabs = document.querySelector<HTMLElement>(".tabs");
+      const tabImage = tabs?.querySelector<HTMLImageElement>(".tab-image");
 
       expect(tabImage).toBeInTheDocument();
     });
@@ -194,10 +203,9 @@ describe("TabsPage.ts", () => {
     test("It should create TabImage component with correct props", () => {
       renderComponent();
 
-      const tabImage = document.querySelector(".tab-image") as HTMLImageElement;
-
-      expect(tabImage.src).toContain(tabsData.history.src);
-      expect(tabImage.alt).toBe(tabsData.history.text);
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
+      expect(tabImage!.src).toContain(tabsData.history.src);
+      expect(tabImage!.alt).toBe(tabsData.history.text);
     });
   });
 
@@ -206,7 +214,7 @@ describe("TabsPage.ts", () => {
       renderComponent();
 
       const visionTab = screen.getByRole("button", { name: /vision button/i });
-      const historyTab = document.getElementById("history");
+      const historyTab = document.querySelector<HTMLButtonElement>("#history");
 
       await user.click(visionTab);
 
@@ -218,7 +226,7 @@ describe("TabsPage.ts", () => {
       renderComponent();
 
       const goalsTab = screen.getByRole("button", { name: /goals button/i });
-      const historyTab = document.getElementById("history");
+      const historyTab = document.querySelector<HTMLButtonElement>("#history");
 
       await user.click(goalsTab);
 
@@ -233,7 +241,8 @@ describe("TabsPage.ts", () => {
 
       await user.click(visionTab);
 
-      const activeTabs = document.querySelectorAll(".tab--active");
+      const activeTabs =
+        document.querySelectorAll<HTMLButtonElement>(".tab--active");
       expect(activeTabs.length).toBe(1);
     });
 
@@ -241,7 +250,8 @@ describe("TabsPage.ts", () => {
       renderComponent();
 
       const visionTab = screen.getByRole("button", { name: /vision button/i });
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
 
       await user.click(visionTab);
 
@@ -255,10 +265,10 @@ describe("TabsPage.ts", () => {
 
       await user.click(visionTab);
 
-      const tabImage = document.querySelector(".tab-image") as HTMLImageElement;
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
 
-      expect(tabImage.src).toContain(tabsData.vision.src);
-      expect(tabImage.alt).toBe(tabsData.vision.text);
+      expect(tabImage!.src).toContain(tabsData.vision.src);
+      expect(tabImage!.alt).toBe(tabsData.vision.text);
     });
 
     test("It should remove previous tab image before adding new one", async () => {
@@ -268,7 +278,8 @@ describe("TabsPage.ts", () => {
 
       await user.click(visionTab);
 
-      const tabImages = document.querySelectorAll(".tab-image");
+      const tabImages =
+        document.querySelectorAll<HTMLImageElement>(".tab-image");
 
       expect(tabImages.length).toBe(1);
     });
@@ -301,7 +312,8 @@ describe("TabsPage.ts", () => {
 
       const visionTab = screen.getByRole("button", { name: /vision button/i });
       const goalsTab = screen.getByRole("button", { name: /goals button/i });
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
 
       await user.click(visionTab);
       expect(tabsDescription?.textContent).toBe(tabsData.vision.text);
@@ -320,7 +332,8 @@ describe("TabsPage.ts", () => {
       await user.click(goalsTab);
       await user.click(visionTab);
 
-      const tabImages = document.querySelectorAll(".tab-image");
+      const tabImages =
+        document.querySelectorAll<HTMLImageElement>(".tab-image");
       expect(tabImages.length).toBe(1);
     });
   });
@@ -329,11 +342,12 @@ describe("TabsPage.ts", () => {
     test("It should use tabsData for history tab", () => {
       renderComponent();
 
-      const tabsDescription = document.querySelector(".tabs__description");
-      const tabImage = document.querySelector(".tab-image") as HTMLImageElement;
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
 
       expect(tabsDescription?.textContent).toBe(tabsData.history.text);
-      expect(tabImage.src).toContain(tabsData.history.src);
+      expect(tabImage!.src).toContain(tabsData.history.src);
     });
 
     test("It should use tabsData for vision tab", async () => {
@@ -343,11 +357,12 @@ describe("TabsPage.ts", () => {
 
       await user.click(visionTab);
 
-      const tabsDescription = document.querySelector(".tabs__description");
-      const tabImage = document.querySelector(".tab-image") as HTMLImageElement;
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
 
       expect(tabsDescription?.textContent).toBe(tabsData.vision.text);
-      expect(tabImage.src).toContain(tabsData.vision.src);
+      expect(tabImage!.src).toContain(tabsData.vision.src);
     });
 
     test("It should use tabsData for goals tab", async () => {
@@ -357,11 +372,12 @@ describe("TabsPage.ts", () => {
 
       await user.click(goalsTab);
 
-      const tabsDescription = document.querySelector(".tabs__description");
-      const tabImage = document.querySelector(".tab-image") as HTMLImageElement;
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
 
       expect(tabsDescription?.textContent).toBe(tabsData.goals.text);
-      expect(tabImage.src).toContain(tabsData.goals.src);
+      expect(tabImage!.src).toContain(tabsData.goals.src);
     });
   });
 
@@ -369,9 +385,10 @@ describe("TabsPage.ts", () => {
     test("It should have correct section structure", () => {
       const { container } = renderComponent();
 
-      const pageWrapper = container.querySelector(".page-wrapper");
-      const headerWrapper = pageWrapper?.querySelector(".header-wrapper");
-      const tabs = pageWrapper?.querySelector(".tabs");
+      const pageWrapper = container.querySelector<HTMLElement>(".page-wrapper");
+      const headerWrapper =
+        pageWrapper?.querySelector<HTMLElement>(".header-wrapper");
+      const tabs = pageWrapper?.querySelector<HTMLElement>(".tabs");
 
       expect(pageWrapper?.tagName).toBe("SECTION");
       expect(headerWrapper?.tagName).toBe("ARTICLE");
@@ -381,8 +398,10 @@ describe("TabsPage.ts", () => {
     test("It should nest tabs list inside tabs wrapper", () => {
       renderComponent();
 
-      const tabsWrapper = document.querySelector(".tabs-wrapper");
-      const tabsList = tabsWrapper?.querySelector(".tabs__list");
+      const tabsWrapper =
+        document.querySelector<HTMLDivElement>(".tabs-wrapper");
+      const tabsList =
+        tabsWrapper?.querySelector<HTMLDivElement>(".tabs__list");
 
       expect(tabsList).toBeInTheDocument();
     });
@@ -390,8 +409,10 @@ describe("TabsPage.ts", () => {
     test("It should nest description inside tabs wrapper", () => {
       renderComponent();
 
-      const tabsWrapper = document.querySelector(".tabs-wrapper");
-      const tabsDescription = tabsWrapper?.querySelector(".tabs__description");
+      const tabsWrapper =
+        document.querySelector<HTMLDivElement>(".tabs-wrapper");
+      const tabsDescription =
+        tabsWrapper?.querySelector<HTMLParagraphElement>(".tabs__description");
 
       expect(tabsDescription).toBeInTheDocument();
     });
@@ -399,8 +420,8 @@ describe("TabsPage.ts", () => {
     test("It should nest image inside tabs section", () => {
       renderComponent();
 
-      const tabs = document.querySelector(".tabs");
-      const tabImage = tabs?.querySelector(".tab-image");
+      const tabs = document.querySelector<HTMLElement>(".tabs");
+      const tabImage = tabs?.querySelector<HTMLImageElement>(".tab-image");
 
       expect(tabImage).toBeInTheDocument();
     });
@@ -410,7 +431,8 @@ describe("TabsPage.ts", () => {
     test("It should remove active class from previous tab", async () => {
       renderComponent();
 
-      const historyTab = document.getElementById("history");
+      const historyTab = document.querySelector<HTMLButtonElement>("#history");
+
       const visionTab = screen.getByRole("button", { name: /vision button/i });
 
       expect(historyTab).toHaveClass("tab--active");
@@ -435,7 +457,8 @@ describe("TabsPage.ts", () => {
     test("It should transfer active class between tabs", async () => {
       renderComponent();
 
-      const historyTab = document.getElementById("history");
+      const historyTab = document.querySelector<HTMLButtonElement>("#history");
+
       const visionTab = screen.getByRole("button", { name: /vision button/i });
       const goalsTab = screen.getByRole("button", { name: /goals button/i });
 
@@ -453,7 +476,8 @@ describe("TabsPage.ts", () => {
     test("It should have paragraph element for description", () => {
       renderComponent();
 
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
 
       expect(tabsDescription).toBeInstanceOf(HTMLParagraphElement);
       expect(tabsDescription?.tagName).toBe("P");
@@ -462,7 +486,8 @@ describe("TabsPage.ts", () => {
     test("It should have id attribute on description", () => {
       renderComponent();
 
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
 
       expect(tabsDescription?.id).toBe("tab-text");
     });
@@ -470,7 +495,8 @@ describe("TabsPage.ts", () => {
     test("It should update description text content on tab change", async () => {
       renderComponent();
 
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
       const visionTab = screen.getByRole("button", { name: /vision button/i });
 
       const initialText = tabsDescription?.textContent;
@@ -487,7 +513,8 @@ describe("TabsPage.ts", () => {
       renderComponent();
 
       const visionTab = screen.getByRole("button", { name: /vision button/i });
-      const tabsDescription = document.querySelector(".tabs__description");
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
 
       const initialDescription = tabsDescription?.textContent;
 
@@ -503,11 +530,12 @@ describe("TabsPage.ts", () => {
 
       await user.click(goalsTab);
 
-      const tabsDescription = document.querySelector(".tabs__description");
-      const tabImage = document.querySelector(".tab-image") as HTMLImageElement;
+      const tabsDescription =
+        document.querySelector<HTMLParagraphElement>(".tabs__description");
+      const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
 
       expect(tabsDescription?.textContent).toBe(tabsData.goals.text);
-      expect(tabImage.src).toContain(tabsData.goals.src);
+      expect(tabImage!.src).toContain(tabsData.goals.src);
     });
   });
 });

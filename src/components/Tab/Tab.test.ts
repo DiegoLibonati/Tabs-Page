@@ -143,7 +143,9 @@ describe("Tab.ts", () => {
       const { container } = renderComponent(props);
 
       expect(container.innerHTML).toBe("<strong>Bold Text</strong>");
-      expect(container.querySelector("strong")).toBeInTheDocument();
+      expect(
+        container.querySelector<HTMLElement>("strong")
+      ).toBeInTheDocument();
     });
   });
 
@@ -348,8 +350,10 @@ describe("Tab.ts", () => {
 
       const { container } = renderComponent(props);
 
-      expect(container.querySelector("em")).toBeInTheDocument();
-      expect(container.querySelector("strong")).toBeInTheDocument();
+      expect(container.querySelector<HTMLElement>("em")).toBeInTheDocument();
+      expect(
+        container.querySelector<HTMLElement>("strong")
+      ).toBeInTheDocument();
     });
 
     test("It should handle long text content", () => {
@@ -448,9 +452,9 @@ describe("Tab.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const tab1 = document.getElementById("tab-1");
-      const tab2 = document.getElementById("tab-2");
-      const allTabs = document.querySelectorAll(".tab");
+      const tab1 = document.querySelector<HTMLButtonElement>("#tab-1");
+      const tab2 = document.querySelector<HTMLButtonElement>("#tab-2");
+      const allTabs = document.querySelectorAll<HTMLButtonElement>(".tab");
 
       expect(tab1).toBeInTheDocument();
       expect(tab2).toBeInTheDocument();

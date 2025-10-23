@@ -235,9 +235,10 @@ describe("TabImage.ts", () => {
       renderComponent(props1);
       renderComponent(props2);
 
-      const image1 = document.getElementById("image-1");
-      const image2 = document.getElementById("image-2");
-      const allImages = document.querySelectorAll(".tab-image");
+      const image1 = document.querySelector<HTMLImageElement>("#image-1");
+      const image2 = document.querySelector<HTMLImageElement>("#image-2");
+      const allImages =
+        document.querySelectorAll<HTMLImageElement>(".tab-image");
 
       expect(image1).toBeInTheDocument();
       expect(image2).toBeInTheDocument();
@@ -388,7 +389,7 @@ describe("TabImage.ts", () => {
 
       const { container } = renderComponent(props);
 
-      expect(container.src).toBeTruthy(); // Will contain the base URL
+      expect(container.src).toBeTruthy();
     });
 
     test("It should handle src with query parameters", () => {
