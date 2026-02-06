@@ -1,6 +1,6 @@
-import { TabImageProps } from "@src/entities/props";
+import type { TabImageProps } from "@/types/props";
 
-import "@src/components/TabImage/TabImage.css";
+import "@/components/TabImage/TabImage.css";
 
 export const TabImage = ({
   id,
@@ -9,7 +9,6 @@ export const TabImage = ({
 }: TabImageProps): HTMLImageElement => {
   const image = document.createElement("img");
   image.className = "tab-image";
-
   image.id = id;
   image.src = src;
   image.alt = title;

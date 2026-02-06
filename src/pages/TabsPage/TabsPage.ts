@@ -1,45 +1,18 @@
-import { Tab as TabT } from "@src/entities/app";
+import type { PageElement } from "@/types/pages";
+import type { TabKey } from "@/types/app";
 
-import { Tab } from "@src/components/Tab/Tab";
-import { TabImage } from "@src/components/TabImage/TabImage";
+import { Tab } from "@/components/Tab/Tab";
+import { TabImage } from "@/components/TabImage/TabImage";
 
-import tabsData from "@src/constants/tabs";
+import tabsData from "@/constants/tabs";
 
-import "@src/pages/TabsPage/TabsPage.css";
+import "@/pages/TabsPage/TabsPage.css";
 
-const changeTabInformation = (e: MouseEvent, id: string) => {
-  const tabsDescription =
-    document.querySelector<HTMLParagraphElement>(".tabs__description");
-  const tabs = document.querySelector<HTMLElement>(".tabs");
-  const tabImage = document.querySelector<HTMLImageElement>(".tab-image");
+export const TabsPage = (): PageElement => {
+  const mainElement = document.createElement("main");
+  mainElement.className = "tabs-page";
 
-  if (tabImage) tabImage.remove();
-
-  const btnPressed = e.target as HTMLButtonElement;
-
-  const currectActiveBtn =
-    document.querySelector<HTMLButtonElement>(".tab--active");
-
-  currectActiveBtn!.classList.remove("tab--active");
-  btnPressed.classList.add("tab--active");
-
-  const tab = tabsData[id as keyof TabT];
-
-  const tabImageComponent = TabImage({
-    id: "tab-image",
-    src: tab.src,
-    title: tab.text,
-  });
-
-  tabs?.append(tabImageComponent);
-  tabsDescription!.textContent = tab.text;
-};
-
-export const TabsPage = (): HTMLElement => {
-  const main = document.createElement("main");
-  main.className = "tabs-page";
-
-  main.innerHTML = `
+  mainElement.innerHTML = `
     <section class="page-wrapper">
         <article class="header-wrapper">
             <h1 class="header__title">About us</h1>
@@ -59,17 +32,42 @@ export const TabsPage = (): HTMLElement => {
     </section>
   `;
 
-  const currentTab = tabsData["history"];
-  const tabs = main.querySelector<HTMLElement>(".tabs");
-  const tabsList = main.querySelector<HTMLDivElement>(".tabs__list");
+  const currentTab = tabsData.history;
+  const tabs = mainElement.querySelector<HTMLElement>(".tabs");
+  const tabsList = mainElement.querySelector<HTMLDivElement>(".tabs__list");
   const tabsDescription =
-    main.querySelector<HTMLParagraphElement>(".tabs__description");
+    mainElement.querySelector<HTMLParagraphElement>(".tabs__description");
 
-  const tabImage = TabImage({
+  let currentTabImage = TabImage({
     id: "tab-image",
     src: currentTab.src,
     title: currentTab.text,
   });
+
+  const changeTabInformation = (e: MouseEvent, id: string): void => {
+    currentTabImage.remove();
+
+    const btnPressed = e.target as HTMLButtonElement;
+
+    const currentActiveButton =
+      mainElement.querySelector<HTMLButtonElement>(".tab--active");
+
+    if (currentActiveButton)
+      currentActiveButton.classList.remove("tab--active");
+
+    btnPressed.classList.add("tab--active");
+
+    const tab = tabsData[id as TabKey];
+
+    currentTabImage = TabImage({
+      id: "tab-image",
+      src: tab.src,
+      title: tab.text,
+    });
+
+    if (tabs) tabs.append(currentTabImage);
+    if (tabsDescription) tabsDescription.textContent = tab.text;
+  };
 
   const tabHistory = Tab({
     id: "history",
@@ -78,6 +76,7 @@ export const TabsPage = (): HTMLElement => {
     children: "History",
     onClick: changeTabInformation,
   });
+
   const tabVision = Tab({
     id: "vision",
     ariaLabel: "vision button",
@@ -85,6 +84,7 @@ export const TabsPage = (): HTMLElement => {
     children: "Vision",
     onClick: changeTabInformation,
   });
+
   const tabGoals = Tab({
     id: "goals",
     ariaLabel: "goals button",
@@ -93,9 +93,17 @@ export const TabsPage = (): HTMLElement => {
     onClick: changeTabInformation,
   });
 
-  tabs?.append(tabImage);
-  tabsList?.append(tabHistory, tabVision, tabGoals);
-  tabsDescription!.textContent = currentTab.text;
+  if (tabs) tabs.append(currentTabImage);
+  if (tabsList) tabsList.append(tabHistory, tabVision, tabGoals);
+  if (tabsDescription) tabsDescription.textContent = currentTab.text;
+
+  const main = mainElement as PageElement;
+
+  main.cleanup = (): void => {
+    tabHistory.cleanup();
+    tabVision.cleanup();
+    tabGoals.cleanup();
+  };
 
   return main;
 };

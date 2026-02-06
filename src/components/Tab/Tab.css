@@ -1,5 +1,5 @@
 .tab {
-  background-color: var(--secondary-color);
+  background-color: var(--color-secondary);
   font-size: 1.5rem;
   border: none;
   width: 33%;
@@ -9,7 +9,7 @@
 }
 
 .tab--active {
-  background-color: var(--white-color);
+  background-color: var(--color-white);
 }
 
 @media only screen and (min-width: 1024px) {

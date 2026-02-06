@@ -1,6 +1,6 @@
-import { Tab } from "@src/entities/app";
+import type { Tab, TabKey } from "@/types/app";
 
-const tabs: Record<string, Tab> = {
+const tabs: Record<TabKey, Tab> = {
   history: {
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia.",
     src: "https://www.absolutviajes.com/wp-content/uploads/2008/11/arquitectura-china-antigua.png",
