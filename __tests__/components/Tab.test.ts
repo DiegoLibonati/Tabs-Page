@@ -2,11 +2,11 @@ import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
 import type { TabProps } from "@/types/props";
-import type { TabElement } from "@/types/components";
+import type { TabComponent } from "@/types/components";
 
 import { Tab } from "@/components/Tab/Tab";
 
-const renderComponent = (props: TabProps): TabElement => {
+const renderComponent = (props: TabProps): TabComponent => {
   const component = Tab(props);
   document.body.appendChild(component);
   return component;

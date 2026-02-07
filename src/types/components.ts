@@ -1,3 +1,5 @@
-export interface TabElement extends HTMLButtonElement {
-  cleanup: () => void;
+export interface Component {
+  cleanup?: () => void;
 }
+
+export interface TabComponent extends Component, HTMLButtonElement {}

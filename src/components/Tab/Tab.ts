@@ -1,5 +1,5 @@
 import type { TabProps } from "@/types/props";
-import type { TabElement } from "@/types/components";
+import type { TabComponent } from "@/types/components";
 
 import "@/components/Tab/Tab.css";
 
@@ -9,8 +9,8 @@ export const Tab = ({
   isActive,
   children,
   onClick,
-}: TabProps): TabElement => {
-  const button = document.createElement("button") as TabElement;
+}: TabProps): TabComponent => {
+  const button = document.createElement("button") as TabComponent;
   button.id = id;
   button.setAttribute("aria-label", ariaLabel);
   button.innerHTML = children ?? "";
