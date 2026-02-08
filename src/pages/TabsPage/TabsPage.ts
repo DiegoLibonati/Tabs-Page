@@ -1,4 +1,4 @@
-import type { PageElement } from "@/types/pages";
+import type { Page } from "@/types/pages";
 import type { TabKey } from "@/types/app";
 
 import { Tab } from "@/components/Tab/Tab";
@@ -8,11 +8,11 @@ import tabsData from "@/constants/tabs";
 
 import "@/pages/TabsPage/TabsPage.css";
 
-export const TabsPage = (): PageElement => {
-  const mainElement = document.createElement("main");
-  mainElement.className = "tabs-page";
+export const TabsPage = (): Page => {
+  const main = document.createElement("main") as Page;
+  main.className = "tabs-page";
 
-  mainElement.innerHTML = `
+  main.innerHTML = `
     <section class="page-wrapper">
         <article class="header-wrapper">
             <h1 class="header__title">About us</h1>
@@ -33,10 +33,10 @@ export const TabsPage = (): PageElement => {
   `;
 
   const currentTab = tabsData.history;
-  const tabs = mainElement.querySelector<HTMLElement>(".tabs");
-  const tabsList = mainElement.querySelector<HTMLDivElement>(".tabs__list");
+  const tabs = main.querySelector<HTMLElement>(".tabs");
+  const tabsList = main.querySelector<HTMLDivElement>(".tabs__list");
   const tabsDescription =
-    mainElement.querySelector<HTMLParagraphElement>(".tabs__description");
+    main.querySelector<HTMLParagraphElement>(".tabs__description");
 
   let currentTabImage = TabImage({
     id: "tab-image",
@@ -50,7 +50,7 @@ export const TabsPage = (): PageElement => {
     const btnPressed = e.target as HTMLButtonElement;
 
     const currentActiveButton =
-      mainElement.querySelector<HTMLButtonElement>(".tab--active");
+      main.querySelector<HTMLButtonElement>(".tab--active");
 
     if (currentActiveButton)
       currentActiveButton.classList.remove("tab--active");
@@ -97,12 +97,10 @@ export const TabsPage = (): PageElement => {
   if (tabsList) tabsList.append(tabHistory, tabVision, tabGoals);
   if (tabsDescription) tabsDescription.textContent = currentTab.text;
 
-  const main = mainElement as PageElement;
-
   main.cleanup = (): void => {
-    tabHistory.cleanup();
-    tabVision.cleanup();
-    tabGoals.cleanup();
+    tabHistory.cleanup?.();
+    tabVision.cleanup?.();
+    tabGoals.cleanup?.();
   };
 
   return main;

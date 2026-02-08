@@ -3,3 +3,4 @@ export interface Component {
 }
 
 export interface TabComponent extends Component, HTMLButtonElement {}
+export interface TabImageComponent extends Component, HTMLImageElement {}

@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 
-import type { PageElement } from "@/types/pages";
+import type { Page } from "@/types/pages";
 
 import { TabsPage } from "@/pages/TabsPage/TabsPage";
 
@@ -11,7 +11,7 @@ jest.doMock("@/constants/tabs", () => ({
   default: mockTabs,
 }));
 
-const renderPage = (): PageElement => {
+const renderPage = (): Page => {
   const page = TabsPage();
   document.body.appendChild(page);
   return page;
