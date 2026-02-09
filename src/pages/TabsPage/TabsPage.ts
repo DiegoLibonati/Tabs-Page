@@ -33,10 +33,10 @@ export const TabsPage = (): Page => {
   `;
 
   const currentTab = tabsData.history;
-  const tabs = main.querySelector<HTMLElement>(".tabs");
-  const tabsList = main.querySelector<HTMLDivElement>(".tabs__list");
+  const tabs = main.querySelector<HTMLElement>(".tabs")!;
+  const tabsList = main.querySelector<HTMLDivElement>(".tabs__list")!;
   const tabsDescription =
-    main.querySelector<HTMLParagraphElement>(".tabs__description");
+    main.querySelector<HTMLParagraphElement>(".tabs__description")!;
 
   let currentTabImage = TabImage({
     id: "tab-image",
@@ -50,11 +50,9 @@ export const TabsPage = (): Page => {
     const btnPressed = e.target as HTMLButtonElement;
 
     const currentActiveButton =
-      main.querySelector<HTMLButtonElement>(".tab--active");
+      main.querySelector<HTMLButtonElement>(".tab--active")!;
 
-    if (currentActiveButton)
-      currentActiveButton.classList.remove("tab--active");
-
+    currentActiveButton.classList.remove("tab--active");
     btnPressed.classList.add("tab--active");
 
     const tab = tabsData[id as TabKey];
@@ -65,8 +63,8 @@ export const TabsPage = (): Page => {
       title: tab.text,
     });
 
-    if (tabs) tabs.append(currentTabImage);
-    if (tabsDescription) tabsDescription.textContent = tab.text;
+    tabs.append(currentTabImage);
+    tabsDescription.textContent = tab.text;
   };
 
   const tabHistory = Tab({
@@ -93,14 +91,16 @@ export const TabsPage = (): Page => {
     onClick: changeTabInformation,
   });
 
-  if (tabs) tabs.append(currentTabImage);
-  if (tabsList) tabsList.append(tabHistory, tabVision, tabGoals);
-  if (tabsDescription) tabsDescription.textContent = currentTab.text;
+  tabs.append(currentTabImage);
+  tabsList.append(tabHistory, tabVision, tabGoals);
+  tabsDescription.textContent = currentTab.text;
 
   main.cleanup = (): void => {
     tabHistory.cleanup?.();
     tabVision.cleanup?.();
     tabGoals.cleanup?.();
+
+    currentTabImage.remove();
   };
 
   return main;
