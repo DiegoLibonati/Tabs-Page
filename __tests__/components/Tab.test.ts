@@ -7,126 +7,80 @@ import type { TabComponent } from "@/types/components";
 import { Tab } from "@/components/Tab/Tab";
 
 const renderComponent = (props: TabProps): TabComponent => {
-  const component = Tab(props);
-  document.body.appendChild(component);
-  return component;
+  const container = Tab(props);
+  document.body.appendChild(container);
+  return container;
 };
 
-describe("Tab", () => {
+describe("Tab Component", () => {
   afterEach(() => {
     document.body.innerHTML = "";
   });
 
-  describe("render", () => {
-    it("should create a button element", () => {
-      renderComponent({
-        id: "test-tab",
-        ariaLabel: "test label",
-        isActive: false,
-        onClick: jest.fn(),
-      });
+  const mockOnClick = jest.fn();
 
-      const tab = screen.getByRole("button", { name: "test label" });
-      expect(tab).toBeInTheDocument();
-      expect(tab.tagName).toBe("BUTTON");
-      expect(tab).toHaveAttribute("type", "button");
-    });
+  const defaultProps: TabProps = {
+    id: "test-tab",
+    ariaLabel: "Test tab button",
+    isActive: false,
+    children: "Test Tab",
+    onClick: mockOnClick,
+  };
 
-    it("should set correct id and aria-label", () => {
-      renderComponent({
-        id: "my-tab",
-        ariaLabel: "click me",
-        isActive: false,
-        onClick: jest.fn(),
-      });
+  it("should render tab button with correct attributes", () => {
+    renderComponent(defaultProps);
 
-      const tab = screen.getByRole("button", { name: "click me" });
-      expect(tab.id).toBe("my-tab");
-      expect(tab).toHaveAccessibleName("click me");
-    });
-
-    it("should render children content", () => {
-      renderComponent({
-        id: "test-tab",
-        ariaLabel: "label",
-        isActive: false,
-        children: "<span>Tab Content</span>",
-        onClick: jest.fn(),
-      });
-
-      const tab = screen.getByRole("button", { name: "label" });
-      expect(tab.innerHTML).toBe("<span>Tab Content</span>");
-    });
-
-    it("should apply basic and active classes", () => {
-      renderComponent({
-        id: "active-tab",
-        ariaLabel: "label",
-        isActive: true,
-        onClick: jest.fn(),
-      });
-
-      const tab = screen.getByRole("button", { name: "label" });
-      expect(tab).toHaveClass("tab", "tab--active");
-    });
-
-    it("should not have active class when isActive is false", () => {
-      renderComponent({
-        id: "inactive-tab",
-        ariaLabel: "label",
-        isActive: false,
-        onClick: jest.fn(),
-      });
-
-      const tab = screen.getByRole("button", { name: "label" });
-      expect(tab).toHaveClass("tab");
-      expect(tab).not.toHaveClass("tab--active");
-    });
+    const button = screen.getByRole("button", { name: "Test tab button" });
+    expect(button).toBeInTheDocument();
+    expect(button).toHaveAttribute("id", "test-tab");
+    expect(button).toHaveAttribute("type", "button");
+    expect(button).toHaveClass("tab");
+    expect(button.innerHTML).toBe("Test Tab");
   });
 
-  describe("interaction", () => {
-    it("should call onClick handler with event and id", async () => {
-      const user = userEvent.setup();
-      const handleClick = jest.fn();
+  it("should apply active class when isActive is true", () => {
+    const activeProps: TabProps = {
+      ...defaultProps,
+      isActive: true,
+    };
 
-      renderComponent({
-        id: "interactive-tab",
-        ariaLabel: "label",
-        isActive: false,
-        onClick: handleClick,
-      });
+    renderComponent(activeProps);
 
-      const tab = screen.getByRole("button", { name: "label" });
-      await user.click(tab);
-
-      expect(handleClick).toHaveBeenCalledTimes(1);
-      expect(handleClick).toHaveBeenCalledWith(
-        expect.any(MouseEvent),
-        "interactive-tab"
-      );
-    });
+    const button = screen.getByRole("button", { name: "Test tab button" });
+    expect(button).toHaveClass("tab", "tab--active");
   });
 
-  describe("cleanup", () => {
-    it("should remove click event listener", async () => {
-      const user = userEvent.setup();
-      const handleClick = jest.fn();
+  it("should not apply active class when isActive is false", () => {
+    renderComponent(defaultProps);
 
-      const tab = renderComponent({
-        id: "cleanup-tab",
-        ariaLabel: "label",
-        isActive: false,
-        onClick: handleClick,
-      });
+    const button = screen.getByRole("button", { name: "Test tab button" });
+    expect(button).toHaveClass("tab");
+    expect(button).not.toHaveClass("tab--active");
+  });
 
-      const removeSpy = jest.spyOn(tab, "removeEventListener");
+  it("should call onClick handler with event and id", async () => {
+    const user = userEvent.setup();
+    renderComponent(defaultProps);
 
-      tab.cleanup();
+    const button = screen.getByRole("button", { name: "Test tab button" });
+    await user.click(button);
 
-      expect(removeSpy).toHaveBeenCalledWith("click", expect.any(Function));
+    expect(mockOnClick).toHaveBeenCalledTimes(1);
+    expect(mockOnClick).toHaveBeenCalledWith(
+      expect.any(MouseEvent),
+      "test-tab"
+    );
+  });
 
-      await user.click(tab);
-      expect(handleClick).not.toHaveBeenCalled();
-    });
+  it("should cleanup event listeners", async () => {
+    const user = userEvent.setup();
+    const tab = renderComponent(defaultProps);
+
+    tab.cleanup?.();
+
+    const button = screen.getByRole("button", { name: "Test tab button" });
+    await user.click(button);
+
+    expect(mockOnClick).not.toHaveBeenCalled();
   });
 });

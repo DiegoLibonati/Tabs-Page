@@ -5,124 +5,138 @@ import type { Page } from "@/types/pages";
 
 import { TabsPage } from "@/pages/TabsPage/TabsPage";
 
-import { mockTabs } from "@tests/__mocks__/tabs.mock";
-
-jest.doMock("@/constants/tabs", () => ({
-  default: mockTabs,
-}));
-
 const renderPage = (): Page => {
-  const page = TabsPage();
-  document.body.appendChild(page);
-  return page;
+  const container = TabsPage();
+  document.body.appendChild(container);
+  return container;
 };
 
 describe("TabsPage", () => {
   afterEach(() => {
     document.body.innerHTML = "";
-    jest.clearAllMocks();
   });
 
-  describe("render", () => {
-    it("should render main container with correct class", () => {
-      renderPage();
+  it("should render the page with correct structure", () => {
+    renderPage();
 
-      const main = screen.getByRole("main");
-      expect(main).toBeInTheDocument();
-      expect(main.tagName).toBe("MAIN");
-      expect(main).toHaveClass("tabs-page");
-    });
-
-    it("should render static header", () => {
-      renderPage();
-
-      const heading = screen.getByRole("heading", { level: 1 });
-      expect(heading).toHaveTextContent("About us");
-    });
-
-    it("should render all tab buttons", () => {
-      renderPage();
-
-      const historyBtn = screen.getByRole("button", { name: /history/i });
-      const visionBtn = screen.getByRole("button", { name: /vision/i });
-      const goalsBtn = screen.getByRole("button", { name: /goals/i });
-
-      expect(historyBtn).toBeInTheDocument();
-      expect(visionBtn).toBeInTheDocument();
-      expect(goalsBtn).toBeInTheDocument();
-    });
+    const main = document.querySelector<HTMLElement>(".tabs-page");
+    expect(main).toBeInTheDocument();
+    expect(main?.tagName).toBe("MAIN");
   });
 
-  describe("initial state", () => {
-    it("should display history content by default", () => {
-      const page = renderPage();
+  it("should render header with title and description", () => {
+    renderPage();
 
-      const description =
-        page.querySelector<HTMLParagraphElement>(".tabs__description");
-      const image = screen.getByRole("img");
-      const historyBtn = screen.getByRole("button", { name: /history/i });
+    const title = screen.getByRole("heading", { name: "About us" });
+    expect(title).toBeInTheDocument();
 
-      expect(description).toHaveTextContent(mockTabs.history.text);
-      expect(image).toHaveAttribute("src", mockTabs.history.src);
-      expect(historyBtn).toHaveClass("tab--active");
-    });
+    const description = document.querySelector<HTMLParagraphElement>(
+      ".header__description"
+    );
+    expect(description).toBeInTheDocument();
   });
 
-  describe("interaction", () => {
-    it("should update content when clicking Vision tab", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
+  it("should render three tab buttons", () => {
+    renderPage();
 
-      const visionBtn = screen.getByRole("button", { name: /vision/i });
-      const historyBtn = screen.getByRole("button", { name: /history/i });
-
-      await user.click(visionBtn);
-
-      const description =
-        page.querySelector<HTMLParagraphElement>(".tabs__description");
-      const image = screen.getByRole("img");
-
-      expect(description).toHaveTextContent(mockTabs.vision.text);
-      expect(image).toHaveAttribute("src", mockTabs.vision.src);
-
-      expect(visionBtn).toHaveClass("tab--active");
-      expect(historyBtn).not.toHaveClass("tab--active");
+    const historyButton = screen.getByRole("button", {
+      name: "history button",
     });
+    const visionButton = screen.getByRole("button", { name: "vision button" });
+    const goalsButton = screen.getByRole("button", { name: "goals button" });
 
-    it("should update content when clicking Goals tab", async () => {
-      const user = userEvent.setup();
-      const page = renderPage();
-      const goalsBtn = screen.getByRole("button", { name: /goals/i });
-
-      await user.click(goalsBtn);
-
-      const description =
-        page.querySelector<HTMLParagraphElement>(".tabs__description");
-      const image = screen.getByRole("img");
-
-      expect(description).toHaveTextContent(mockTabs.goals.text);
-      expect(image).toHaveAttribute("src", mockTabs.goals.src);
-      expect(goalsBtn).toHaveClass("tab--active");
-    });
+    expect(historyButton).toBeInTheDocument();
+    expect(visionButton).toBeInTheDocument();
+    expect(goalsButton).toBeInTheDocument();
   });
 
-  describe("cleanup", () => {
-    it("should remove event listeners from all tabs", () => {
-      const page = renderPage();
+  it("should have history tab active by default", () => {
+    renderPage();
 
-      const historyBtn = screen.getByRole("button", { name: /history/i });
-      const visionBtn = screen.getByRole("button", { name: /vision/i });
-      const goalsBtn = screen.getByRole("button", { name: /goals/i });
-
-      const spyHistory = jest.spyOn(historyBtn, "removeEventListener");
-      const spyVision = jest.spyOn(visionBtn, "removeEventListener");
-      const spyGoals = jest.spyOn(goalsBtn, "removeEventListener");
-
-      page.cleanup?.();
-
-      expect(spyHistory).toHaveBeenCalledWith("click", expect.any(Function));
-      expect(spyVision).toHaveBeenCalledWith("click", expect.any(Function));
-      expect(spyGoals).toHaveBeenCalledWith("click", expect.any(Function));
+    const historyButton = screen.getByRole("button", {
+      name: "history button",
     });
+    expect(historyButton).toHaveClass("tab--active");
+  });
+
+  it("should display initial tab image and text", () => {
+    renderPage();
+
+    const image = document.querySelector<HTMLImageElement>("#tab-image");
+    const description =
+      document.querySelector<HTMLParagraphElement>("#tab-text");
+
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute("src", "/images/history.jpg");
+    expect(description?.textContent).toBe(
+      "Our history is rich and meaningful."
+    );
+  });
+
+  it("should change tab content when clicking vision tab", async () => {
+    const user = userEvent.setup();
+    renderPage();
+
+    const visionButton = screen.getByRole("button", { name: "vision button" });
+    await user.click(visionButton);
+
+    const image = document.querySelector<HTMLImageElement>("#tab-image");
+    const description =
+      document.querySelector<HTMLParagraphElement>("#tab-text");
+
+    expect(visionButton).toHaveClass("tab--active");
+    expect(image).toHaveAttribute("src", "/images/vision.jpg");
+    expect(description?.textContent).toBe(
+      "Our vision is to lead the industry."
+    );
+  });
+
+  it("should change tab content when clicking goals tab", async () => {
+    const user = userEvent.setup();
+    renderPage();
+
+    const goalsButton = screen.getByRole("button", { name: "goals button" });
+    await user.click(goalsButton);
+
+    const image = document.querySelector<HTMLImageElement>("#tab-image");
+    const description =
+      document.querySelector<HTMLParagraphElement>("#tab-text");
+
+    expect(goalsButton).toHaveClass("tab--active");
+    expect(image).toHaveAttribute("src", "/images/goals.jpg");
+    expect(description?.textContent).toBe(
+      "Our goals are ambitious and achievable."
+    );
+  });
+
+  it("should remove active class from previous tab when switching", async () => {
+    const user = userEvent.setup();
+    renderPage();
+
+    const historyButton = screen.getByRole("button", {
+      name: "history button",
+    });
+    const visionButton = screen.getByRole("button", { name: "vision button" });
+
+    expect(historyButton).toHaveClass("tab--active");
+
+    await user.click(visionButton);
+
+    expect(historyButton).not.toHaveClass("tab--active");
+    expect(visionButton).toHaveClass("tab--active");
+  });
+
+  it("should cleanup tabs and remove image on page cleanup", () => {
+    const page = renderPage();
+
+    const image = document.querySelector<HTMLImageElement>("#tab-image");
+    expect(image).toBeInTheDocument();
+
+    expect(page.cleanup).toBeDefined();
+    page.cleanup?.();
+
+    const imageAfterCleanup =
+      document.querySelector<HTMLImageElement>("#tab-image");
+    expect(imageAfterCleanup).not.toBeInTheDocument();
   });
 });

@@ -1,14 +1,14 @@
 export const mockTabs = {
   history: {
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia.",
-    src: "https://www.absolutviajes.com/wp-content/uploads/2008/11/arquitectura-china-antigua.png",
+    src: "/images/history.jpg",
+    text: "Our history is rich and meaningful.",
   },
   vision: {
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia.",
-    src: "https://img.lovepik.com/photo/50131/9815.jpg_wh860.jpg",
+    src: "/images/vision.jpg",
+    text: "Our vision is to lead the industry.",
   },
   goals: {
-    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia. Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit, mollitia.",
-    src: "http://valeriavasquez.weebly.com/uploads/4/8/7/7/48775221/1305460_orig.jpg",
+    src: "/images/goals.jpg",
+    text: "Our goals are ambitious and achievable.",
   },
 };
