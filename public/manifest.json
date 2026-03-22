@@ -1,7 +1,7 @@
 {
-  "name": "Template Vite Vanilla TS",
-  "short_name": "Template",
-  "description": "Personal template for carrying out a project with Vite Vanilla and TypeScript.",
+  "name": "Tabs",
+  "short_name": "Tabs",
+  "description": "I made a web page that through different tabs you can get different information. Also if you tab with your keyboard you can access the different tabs and not only with the mouse click.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
