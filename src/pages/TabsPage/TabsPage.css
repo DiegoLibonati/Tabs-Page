@@ -5,7 +5,7 @@
   flex-flow: column wrap;
   width: 100%;
   height: 100%;
-  padding: 1rem;
+  padding: 0.625rem;
 }
 
 .page-wrapper {
@@ -24,23 +24,23 @@
   flex-flow: column wrap;
   width: 100%;
   height: 100%;
-  margin: 2rem 0 2rem 0;
+  margin: 1.25rem 0 1.25rem 0;
 }
 
 .header__title {
-  font-size: 3rem;
+  font-size: 1.875rem;
 }
 
 .header__description {
-  font-size: 2rem;
-  margin: 1rem 0 0 0;
+  font-size: 1.25rem;
+  margin: 0.625rem 0 0 0;
 }
 
 .tabs {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  column-gap: 1rem;
-  row-gap: 1rem;
+  column-gap: 0.625rem;
+  row-gap: 0.625rem;
   width: 100%;
   height: 100%;
   align-items: center;
@@ -54,8 +54,8 @@
   flex-flow: column wrap;
   width: 100%;
   height: 100%;
-  border: 0.2rem solid var(--color-white);
-  border-radius: 0.5rem;
+  border: 0.125rem solid var(--color-white);
+  border-radius: 0.3125rem;
 }
 
 .tabs__list {
@@ -65,28 +65,28 @@
   flex-flow: row wrap;
   width: 100%;
   height: auto;
-  border-bottom: 0.2rem solid var(--color-white);
-  padding: 0.2rem;
+  border-bottom: 0.125rem solid var(--color-white);
+  padding: 0.125rem;
 }
 
 .tabs__description {
   background-color: var(--color-secondary);
-  font-size: 2rem;
-  padding: 0.5rem;
+  font-size: 1.25rem;
+  padding: 0.3125rem;
   text-align: justify;
 }
 
 @media only screen and (min-width: 768px) {
   .tabs {
-    width: 60rem;
+    width: 37.5rem;
   }
 }
 
 @media only screen and (min-width: 1024px) {
   .tabs {
     grid-template-columns: repeat(2, 1fr);
-    width: 80rem;
-    margin-top: 2rem;
+    width: 50rem;
+    margin-top: 1.25rem;
   }
 
   .tabs__list {

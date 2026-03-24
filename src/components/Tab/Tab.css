@@ -1,10 +1,10 @@
 .tab {
   background-color: var(--color-secondary);
-  font-size: 1.5rem;
+  font-size: 0.9375rem;
   border: none;
   width: 33%;
   height: auto;
-  padding: 0.5rem;
+  padding: 0.3125rem;
   cursor: pointer;
 }
 

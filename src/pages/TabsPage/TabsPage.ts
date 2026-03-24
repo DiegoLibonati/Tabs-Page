@@ -69,7 +69,7 @@ export const TabsPage = (): Page => {
 
   const tabHistory = Tab({
     id: "history",
-    ariaLabel: "history button",
+    ariaLabel: "Select History tab",
     isActive: true,
     children: "History",
     onClick: changeTabInformation,
@@ -77,7 +77,7 @@ export const TabsPage = (): Page => {
 
   const tabVision = Tab({
     id: "vision",
-    ariaLabel: "vision button",
+    ariaLabel: "Select Vision tab",
     isActive: false,
     children: "Vision",
     onClick: changeTabInformation,
@@ -85,7 +85,7 @@ export const TabsPage = (): Page => {
 
   const tabGoals = Tab({
     id: "goals",
-    ariaLabel: "goals button",
+    ariaLabel: "Select Goals tab",
     isActive: false,
     children: "Goals",
     onClick: changeTabInformation,

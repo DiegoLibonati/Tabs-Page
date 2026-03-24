@@ -40,10 +40,14 @@ describe("TabsPage", () => {
     renderPage();
 
     const historyButton = screen.getByRole("button", {
-      name: "history button",
+      name: "Select History tab",
     });
-    const visionButton = screen.getByRole("button", { name: "vision button" });
-    const goalsButton = screen.getByRole("button", { name: "goals button" });
+    const visionButton = screen.getByRole("button", {
+      name: "Select Vision tab",
+    });
+    const goalsButton = screen.getByRole("button", {
+      name: "Select Goals tab",
+    });
 
     expect(historyButton).toBeInTheDocument();
     expect(visionButton).toBeInTheDocument();
@@ -54,7 +58,7 @@ describe("TabsPage", () => {
     renderPage();
 
     const historyButton = screen.getByRole("button", {
-      name: "history button",
+      name: "Select History tab",
     });
     expect(historyButton).toHaveClass("tab--active");
   });
@@ -77,7 +81,9 @@ describe("TabsPage", () => {
     const user = userEvent.setup();
     renderPage();
 
-    const visionButton = screen.getByRole("button", { name: "vision button" });
+    const visionButton = screen.getByRole("button", {
+      name: "Select Vision tab",
+    });
     await user.click(visionButton);
 
     const image = document.querySelector<HTMLImageElement>("#tab-image");
@@ -95,7 +101,9 @@ describe("TabsPage", () => {
     const user = userEvent.setup();
     renderPage();
 
-    const goalsButton = screen.getByRole("button", { name: "goals button" });
+    const goalsButton = screen.getByRole("button", {
+      name: "Select Goals tab",
+    });
     await user.click(goalsButton);
 
     const image = document.querySelector<HTMLImageElement>("#tab-image");
@@ -114,9 +122,11 @@ describe("TabsPage", () => {
     renderPage();
 
     const historyButton = screen.getByRole("button", {
-      name: "history button",
+      name: "Select History tab",
     });
-    const visionButton = screen.getByRole("button", { name: "vision button" });
+    const visionButton = screen.getByRole("button", {
+      name: "Select Vision tab",
+    });
 
     expect(historyButton).toHaveClass("tab--active");
 
