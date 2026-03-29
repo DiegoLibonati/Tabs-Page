@@ -1,7 +1,7 @@
 import type { TabImageProps } from "@/types/props";
 import type { TabImageComponent } from "@/types/components";
 
-import { TabImage } from "@/components/TabImage/TabImage";
+import TabImage from "@/components/TabImage/TabImage";
 
 const renderComponent = (props: TabImageProps): TabImageComponent => {
   const container = TabImage(props);

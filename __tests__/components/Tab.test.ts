@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import type { TabProps } from "@/types/props";
 import type { TabComponent } from "@/types/components";
 
-import { Tab } from "@/components/Tab/Tab";
+import Tab from "@/components/Tab/Tab";
 
 const renderComponent = (props: TabProps): TabComponent => {
   const container = Tab(props);

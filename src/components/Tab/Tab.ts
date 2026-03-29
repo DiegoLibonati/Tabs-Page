@@ -3,7 +3,7 @@ import type { TabComponent } from "@/types/components";
 
 import "@/components/Tab/Tab.css";
 
-export const Tab = ({
+const Tab = ({
   id,
   ariaLabel,
   isActive,
@@ -29,3 +29,5 @@ export const Tab = ({
 
   return button;
 };
+
+export default Tab;

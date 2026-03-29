@@ -1,14 +1,14 @@
 import type { Page } from "@/types/pages";
 import type { TabKey } from "@/types/app";
 
-import { Tab } from "@/components/Tab/Tab";
-import { TabImage } from "@/components/TabImage/TabImage";
+import Tab from "@/components/Tab/Tab";
+import TabImage from "@/components/TabImage/TabImage";
 
 import tabsData from "@/constants/tabs";
 
 import "@/pages/TabsPage/TabsPage.css";
 
-export const TabsPage = (): Page => {
+const TabsPage = (): Page => {
   const main = document.createElement("main") as Page;
   main.className = "tabs-page";
 
@@ -105,3 +105,5 @@ export const TabsPage = (): Page => {
 
   return main;
 };
+
+export default TabsPage;
