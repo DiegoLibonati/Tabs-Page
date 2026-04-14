@@ -1,7 +1,7 @@
 {
-  "name": "Tabs",
-  "short_name": "Tabs",
-  "description": "I made a web page that through different tabs you can get different information. Also if you tab with your keyboard you can access the different tabs and not only with the mouse click.",
+  "name": "Tabula",
+  "short_name": "Tabula",
+  "description": "Tabula is a lightweight, framework-free web application built entirely with vanilla TypeScript, HTML5, and CSS3. It presents an 'About Us' style page where content is organized into three distinct sections — **History**, **Vision**, and **Goals** — each accessible through an interactive tab navigation system.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

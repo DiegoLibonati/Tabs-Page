@@ -1,4 +1,4 @@
-# Tabs Page
+# Tabula
 
 ## Educational Purpose
 
@@ -17,7 +17,15 @@ The application will open automatically at `http://localhost:3000`
 
 ## Description
 
-I made a web page that through different tabs you can get different information. Also if you tab with your keyboard you can access the different tabs and not only with the mouse click.
+**Tabula** is a lightweight, framework-free web application built entirely with vanilla TypeScript, HTML5, and CSS3. It presents an "About Us" style page where content is organized into three distinct sections — **History**, **Vision**, and **Goals** — each accessible through an interactive tab navigation system.
+
+When the user selects a tab, the application dynamically updates the displayed image and the descriptive text beneath it, replacing the previous content without any page reload. The active tab is visually highlighted so the user always knows where they are. The transition between tabs is handled entirely through DOM manipulation, with no external UI libraries or frameworks involved.
+
+The interface is fully keyboard-navigable: users can move between tabs using the `Tab` key and activate them with `Enter` or `Space`, making the application accessible without a mouse. ARIA labels are applied to each tab button to ensure screen reader compatibility.
+
+Under the hood, the project follows a strict component-based architecture where each UI piece — tabs, images, and pages — is a factory function that returns a DOM element and exposes an optional `cleanup()` method to safely remove event listeners when the element is unmounted. This pattern keeps memory usage predictable and avoids listener leaks.
+
+The build system is powered by Vite, providing instant dev server startup and optimized production builds. The codebase is covered by a Jest test suite using `@testing-library/dom` and `@testing-library/user-event`, enforcing a minimum 70% coverage threshold across branches, functions, lines, and statements. Code quality is enforced through ESLint and Prettier, with a Husky pre-commit hook that automatically lints and formats staged files before every commit.
 
 ## Technologies used
 
@@ -59,11 +67,7 @@ No production dependencies - Pure Vanilla TypeScript
 
 ## Portfolio Link
 
-[`https://www.diegolibonati.com.ar/#/project/Tabs-Page`](https://www.diegolibonati.com.ar/#/project/Tabs-Page)
-
-## Video
-
-https://user-images.githubusercontent.com/99032604/200205538-5fdfdbc3-39aa-4a1d-b6f7-3f9beaa3e45f.mp4
+[`https://www.diegolibonati.com.ar/#/project/tabula`](https://www.diegolibonati.com.ar/#/project/tabula)
 
 ## Testing
 
