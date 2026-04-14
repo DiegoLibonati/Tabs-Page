@@ -13,7 +13,7 @@ const renderPage = (): Page => {
   return element;
 };
 
-describe("TabsPage", () => {
+describe("TabulaPage", () => {
   afterEach(() => {
     document.body.innerHTML = "";
   });
