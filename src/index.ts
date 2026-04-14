@@ -6,8 +6,8 @@ const onInit = (): void => {
 
   if (!app) throw new Error(`You must render a container to mount the app.`);
 
-  const tabsPage = TabulaPage();
-  app.appendChild(tabsPage);
+  const tabulaPage = TabulaPage();
+  app.appendChild(tabulaPage);
 };
 
 document.addEventListener("DOMContentLoaded", onInit);
