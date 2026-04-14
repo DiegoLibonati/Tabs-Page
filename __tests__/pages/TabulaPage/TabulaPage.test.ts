@@ -3,12 +3,12 @@ import userEvent from "@testing-library/user-event";
 
 import type { Page } from "@/types/pages";
 
-import TabsPage from "@/pages/TabsPage/TabsPage";
+import TabulaPage from "@/pages/TabulaPage/TabulaPage";
 
 import { mockTabs } from "@tests/__mocks__/tabs.mock";
 
 const renderPage = (): Page => {
-  const element = TabsPage();
+  const element = TabulaPage();
   document.body.appendChild(element);
   return element;
 };

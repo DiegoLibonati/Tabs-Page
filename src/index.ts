@@ -1,12 +1,12 @@
 import "@/index.css";
-import TabsPage from "@/pages/TabsPage/TabsPage";
+import TabulaPage from "@/pages/TabulaPage/TabulaPage";
 
 const onInit = (): void => {
   const app = document.querySelector<HTMLDivElement>("#app");
 
   if (!app) throw new Error(`You must render a container to mount the app.`);
 
-  const tabsPage = TabsPage();
+  const tabsPage = TabulaPage();
   app.appendChild(tabsPage);
 };
 

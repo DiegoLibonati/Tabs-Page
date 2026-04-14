@@ -6,11 +6,11 @@ import TabImage from "@/components/TabImage/TabImage";
 
 import tabsData from "@/constants/tabs";
 
-import "@/pages/TabsPage/TabsPage.css";
+import "@/pages/TabulaPage/TabulaPage.css";
 
-const TabsPage = (): Page => {
+const TabulaPage = (): Page => {
   const main = document.createElement("main") as Page;
-  main.className = "tabs-page";
+  main.className = "tabula-page";
 
   main.innerHTML = `
     <section class="page-wrapper">
@@ -106,4 +106,4 @@ const TabsPage = (): Page => {
   return main;
 };
 
-export default TabsPage;
+export default TabulaPage;
