@@ -7,6 +7,15 @@ import TabulaPage from "@/pages/TabulaPage/TabulaPage";
 
 import { mockTabs } from "@tests/__mocks__/tabs.mock";
 
+jest.mock("@/constants/tabs", () => {
+  const mockData = jest.requireActual("@tests/__mocks__/tabs.mock");
+  const { mockTabs } = mockData;
+  return {
+    __esModule: true,
+    default: mockTabs,
+  };
+});
+
 const renderPage = (): Page => {
   const element = TabulaPage();
   document.body.appendChild(element);
