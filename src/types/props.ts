@@ -1,6 +1,6 @@
 interface DefaultProps {
   className?: string;
-  children?: string;
+  children?: string | undefined;
 }
 
 export interface TabProps extends DefaultProps {
