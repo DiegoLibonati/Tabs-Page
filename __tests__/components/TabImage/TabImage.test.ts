@@ -22,6 +22,7 @@ const renderComponent = (
 describe("TabImage", () => {
   afterEach(() => {
     document.body.innerHTML = "";
+    jest.clearAllMocks();
   });
 
   describe("rendering", () => {

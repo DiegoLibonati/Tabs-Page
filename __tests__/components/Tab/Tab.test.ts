@@ -25,6 +25,7 @@ const renderComponent = (props: Partial<TabProps> = {}): TabComponent => {
 describe("Tab", () => {
   afterEach(() => {
     document.body.innerHTML = "";
+    jest.clearAllMocks();
   });
 
   describe("rendering", () => {
@@ -71,21 +72,16 @@ describe("Tab", () => {
     });
 
     it("should render empty content when children is omitted", () => {
-      const element = Tab({
-        id: defaultProps.id,
-        ariaLabel: defaultProps.ariaLabel,
-        isActive: defaultProps.isActive,
-        onClick: defaultProps.onClick,
-      });
-      document.body.appendChild(element);
+      renderComponent({ children: undefined });
       expect(screen.getByRole("button")).toHaveTextContent("");
     });
   });
 
   describe("behavior", () => {
     it("should call onClick with the event and id when clicked", async () => {
+      const mockOnClick = jest.fn();
       const user = userEvent.setup();
-      renderComponent();
+      renderComponent({ onClick: mockOnClick });
       await user.click(screen.getByRole("button"));
       expect(mockOnClick).toHaveBeenCalledTimes(1);
       expect(mockOnClick).toHaveBeenCalledWith(
@@ -95,8 +91,13 @@ describe("Tab", () => {
     });
 
     it("should call onClick with the correct id for a different tab", async () => {
+      const mockOnClick = jest.fn();
       const user = userEvent.setup();
-      renderComponent({ id: "vision", ariaLabel: "Select Vision tab" });
+      renderComponent({
+        id: "vision",
+        ariaLabel: "Select Vision tab",
+        onClick: mockOnClick,
+      });
       await user.click(screen.getByRole("button"));
       expect(mockOnClick).toHaveBeenCalledWith(
         expect.any(MouseEvent),
@@ -107,8 +108,9 @@ describe("Tab", () => {
 
   describe("cleanup", () => {
     it("should not call onClick after cleanup", async () => {
+      const mockOnClick = jest.fn();
       const user = userEvent.setup();
-      const element = renderComponent();
+      const element = renderComponent({ onClick: mockOnClick });
       element.cleanup?.();
       await user.click(screen.getByRole("button"));
       expect(mockOnClick).not.toHaveBeenCalled();

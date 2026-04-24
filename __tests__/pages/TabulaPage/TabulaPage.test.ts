@@ -25,6 +25,7 @@ const renderPage = (): Page => {
 describe("TabulaPage", () => {
   afterEach(() => {
     document.body.innerHTML = "";
+    jest.restoreAllMocks();
   });
 
   describe("rendering", () => {
