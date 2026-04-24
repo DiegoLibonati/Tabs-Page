@@ -1,5 +1,5 @@
 interface DefaultProps {
-  className?: string;
+  className?: string | undefined;
   children?: string | undefined;
 }
 
