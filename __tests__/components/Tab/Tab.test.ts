@@ -72,7 +72,7 @@ describe("Tab", () => {
     });
 
     it("should render empty content when children is omitted", () => {
-      renderComponent({ children: undefined });
+      renderComponent({ children: undefined! });
       expect(screen.getByRole("button")).toHaveTextContent("");
     });
   });
